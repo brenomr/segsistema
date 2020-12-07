@@ -1,0 +1,144 @@
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="pt-br">
+<head>
+
+    {% block head %}
+    {% endblock %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/bootstrap.min.css"> <!-- v4.3.1 -->
+    <link rel="stylesheet" href="/static/bootstrap-table.min.css"> <!-- v1.15.5 -->
+    <link rel="stylesheet" href="/static/css/all.css"> <!-- 5.11.2 -->
+    <link rel="stylesheet" href="/static/geral.css">
+    <link rel="shortcut icon" href="/static/favicon.ico/"/>
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+</head>
+
+<body> <!-- style="overflow:scroll;" -->
+    {% block topo %}
+        <!-- Cabeçalho topo, logo e botão de login -->
+        <div class="container-fluid" style="padding: 10px 15px 10px 15px">
+            <div class="row">
+                <div class="col-lg text-center"><a href="{% url 'index' %}"><img src="{% static 'logo.png' %}" class="img-fluid" /></a></div>
+                <div class="col-lg-7 text-center"></div>
+                <div class="col-lg text-center">
+                    {% if user.is_authenticated %}
+
+                        Olá {{user.username}} <br>
+                        <a class="btn btn-primary" href="/logout/">
+                            <span style="font-size: 200%; color: blank;"><i class="fas fa-user"></i></span><br>
+                            <span style="font-size: 80%; color: blank;">Desconectar</span>
+                        </a>
+                    {% else %}
+                        <br>
+                        <a class="btn btn-primary" href="/login/">
+                            <span style="font-size: 35px; color: blank;"><i class="fas fa-user"></i></span><br>
+                            <span style="font-size: 15px; color: blank;">&nbsp&nbsp&nbspConectar&nbsp&nbsp&nbsp</span>
+                        </a>
+
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu de navegação -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <span class="navbar-brand">Menu</span>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- botão necessário para acessar o menu responsivo -->
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'portaria' %}"><i class="fas fa-door-open fa-1x"></i> Portaria<span class="sr-only">(current)</span></a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'cadastro' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-address-book fa-1x"></i> Cadastrar
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'cadastro_novo' 'morador' %}">Morador</a>
+                                <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'cadastro_novo' 'visitante' %}">Visitante</a>
+                                <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'cadastro_novo' 'vmorador' %}" aria-disabled="true">Veículo Morador</a>
+                                <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'cadastro_novo' 'vvisitante' %}">Veículo Visitante</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="{% url 'consulta' %}" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-1x"></i> Consultas
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{% url 'consulta' %}">Acessos</a>
+                                <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="{% url 'cadastro'%}">Cadastros</a>
+                        </div>
+                    </li>
+
+                    {% if user.is_staff %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/auth/user/add/"><i class="fas fa-user-plus"></i> Adicionar Usuário<span class="sr-only">(current)</span></a>
+                        </li>
+                    {% endif %}
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ajuda' %}"><i class="far fa-question-circle fa-1x"></i> Ajuda<span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+
+                <form class="form-inline my-2 my-lg-0" method="post" action="{% url 'busca' %}">
+                    {% csrf_token %}
+                    <input class="form-control mr-sm-2" type="text" name="item" value="" placeholder="Busca Simples">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Buscar</button>
+                </form>
+            </div>
+        </nav>
+
+    <!-- Faixa títulos -->
+    <div class="container-fluid bg-primary text-center" style="padding: 10px 15px 10px 15px" >
+        <h4><span style="color:white">{{titulo}}</span></h4>
+    </div>
+
+    {% endblock %}
+
+
+    <div class="container" style="padding: 20px 5% 20px 5%">
+        {% block main %}
+        {% endblock %}
+    </div>
+
+    <script src="/static/jquery-3.4.1.slim.min.js"></script> <!-- utilizado pelo MENU e pela MASK -->
+    <script type="text/javascript" src="/static/jquery.mask.min.js"></script> <!-- utilizado pela MASK -->
+    <script src="/static/mascaras.js"></script> <!-- utilizado pela MASK -->
+    <script src="/static/popper.min.js"></script> <!-- utilizado pelo NAVBAR -->
+    <script src="/static/bootstrap.min.js"></script> <!-- v4.3.1 - utilizado pelo MENU -->
+    <script src="/static/bootstrap-table.min.js"></script> <!-- v1.15.5 utilizado pelas tabelas -->
+    <script src="/static/bootstrap-table-pt-BR.min.js"></script> <!-- pacote p/ tradução pt-br -->
+
+    {% block footer %}
+        <footer class="footer">
+            <div class="container text-center">
+                <span style="color:white;"> Última atualização: {{data}} </span>
+            </div>
+        </footer>
+    {% endblock %}
+</body>
+</html>

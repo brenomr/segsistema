@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %} Ajuda - Manual {% endblock %}
+
+{% block main %}
+<div class="jumbotron">
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Portaria. <span class="text-muted">Registrando acessos.</span></h2>
+            <p class="lead">Clicando no menu Portaria será exibido os blocos 'Acesso Morador' e 'Acesso Visitante'. Em Acesso Morador será exibido um formulário onde deve ser informado o tipo de acesso, morador e veículo se houver, em seguida basta Registrar o acesso ou Cancelar a ação. Em Acesso Visitante há as opções Entrada e Saída, na Entrada basta preencher o formulário e Registrar ou Cancelar a ação, na saída é só informar o número de cartão utilizado.</p>
+        </div>
+        <div class="col-sm-5 col-md-5">
+            <img src="/static/portaria.png/" class="img-fluid">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Cadastrar. <span class="text-muted">Pessoas e veículos.</span></h2>
+            <p class="lead">Clicando no menu Cadastrar será exibido os submenus Morador, Visitante, Veículo Morador e Veículo Visitante, cada opção irá gerar um forumulário de preenchimento para o cadastro, note que há campos obrigatórios para preenchimento. No formulário há opção de Salvar ou Cancelar. A ação Cancelar leva o usuário para a tela de Cadastro Geral, onde pode ser acessado os itens já cadastrados.</p>
+        </div>
+        <div class="col-sm-5 col-md-5 order-md-1">
+            <img src="/static/cadastrar.png/" class="img-fluid">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Consultas. <span class="text-muted">Listar Acessos e Cadastros.</span></h2>
+            <p class="lead">Clicando no menu Consultas será exibido os submenus Acessos e Cadastros. Cada submenu leva as opções distintas de listagem, em Acessos é possível listar todos os acessos internos - moradores - e externos - visitantes, em Cadastros é possível listar todas as pessoas - morador ou visitante - e veículos.</p>
+        </div>
+        <div class="col-sm-5 col-md-5">
+            <img src="/static/consultas.png/" class="img-fluid">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Privilégio. <span class="text-muted">Adicionar usuários.</span></h2>
+            <p class="lead">Novos usuários podem ser adicionados para usar a aplicação, para cadastrar novos usuários é preciso estar conectado como gerente ou perfil superior e acessar o menu Adicionar Usuário.</p>
+        </div>
+        <div class="col-sm-5 col-md-5 order-md-1">
+            <img src="/static/administracao.png/" class="img-fluid">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+        <div class="col-md-7">
+            <h2 class="featurette-heading">Busca. <span class="text-muted">Simples visualização.</span></h2>
+            <p class="lead">O campo Busca Simples tem como objetivo realizar busca que tem como retorno pessoas e veículos registradas no sistema, esse retorno é de simples visualização, serve como uma forma de confirmar se o dado está cadastrado no sistema.</p>
+        </div>
+        <div class="col-sm-5 col-md-5 order-md-1">
+            <img src="/static/busca.png/" class="img-fluid">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+</div>
+{% endblock %}

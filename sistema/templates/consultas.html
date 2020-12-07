@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} Relatório {% endblock %}
+
+{% block main %}
+    <!-- ESCOLHER O TIPO DE CONSULTA (RELATÓRIO) PARA EXIBIÇÃO -->
+    <div class="jumbotron">
+        <form method="post" action="{% url 'listar_consulta' %}" id="entrar">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>Informe a categoria</label>
+                <select class="custom-select" name="item" form="entrar">
+                    <option value="1">Morador</option>
+                    <option value="2">Visitante</option>
+                </select>
+                <br><br> <button class="btn btn-primary" type="submit">Entrada</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

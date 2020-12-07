@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Relatório de Moradores</title>
+{% endblock %}
+
+{% block main %}
+    <table id="table"
+        data-toggle="table"
+        data-search="true"
+        data-pagination="true"
+        data-show-columns="true"
+        data-page-list="[5, 10, 15, 50, all]"
+        data-height="510"
+        > <!-- toggle: ativa a table c/ js. Data-heigth permite bloquear o tamanho da tabela e permite rolagem dela -->
+        <thead>
+            <tr>
+                <th data-sortable="false">CPF</th>
+                <th data-sortable="true">Morador</th>
+                <th data-sortable="true">Acesso</th>
+                <th data-sortable="true">Data</th>
+                <th data-sortable="true">Horário</th>
+                <th data-sortable="true">Veículo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in lista %}
+                <tr>
+                    <td>{{item.morador.cpf}}</td>  <!-- <a href="{% url 'cadastro_editar' 'morador' item.morador.id %}"><i class="fas fa-user-edit"></i></td> -->
+                    <td>{{item.morador.nome}}</td> <!-- mais informações de datas https://docs.djangoproject.com/en/2.2/ref/templates/builtins/ -->
+                    {% if item.tipo == 'Entrada' %}
+                        <td><span style="color:green;"><i class="fas fa-arrow-alt-circle-up"></i></span>  {{item.tipo}}</td>
+                    {% else %}
+                        <td><span style="color:red;"><i class="fas fa-arrow-alt-circle-down"></i></span>  {{item.tipo}}</td>
+                    {% endif %}
+                    <td>{{item.data|date:" d/m/y"}}</td>
+                    <td>{{item.data|date:" H:i"}}</td>
+                    <td>
+                        {% if item.veiculo == None %}
+                            Sem veículo
+                        {% else %}
+                            {{item.veiculo.placa}}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="row" style="padding-top:5px">
+        <div class="col text-center">
+            <a  class="btn btn-primary" role="button" href="{% url 'consulta' %}" > Voltar </a>
+        </div>
+    </div>
+{% endblock %}

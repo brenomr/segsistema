@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %} Cadastro - Pesquisa {% endblock %}
+
+{% block main %}
+<div class="row justify-content-center" style="padding: 0px 0px 15px 0px">
+    <div class="col">
+        <table id="table"
+            data-toggle="table"
+            data-search="true"
+            data-pagination="true"
+            data-show-columns="true"
+            data-page-list="[5, 10, 15, 50, all]"
+            data-height="510"
+            > <!-- toggle: ativa a table c/ js. Data-heigth permite bloquear o tamanho da tabela e permite rolagem dela -->
+            {% if tabela == 'veiculo' %}
+                <thead>
+                    <tr>
+                        <th data-sortable="true" >Placa</th>
+                        <th data-sortable="true" >Modelo</th>
+                        <th data-sortable="true" >Proprietário(s)</th>
+                        <th class="text-center">Edição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in lista %}
+                <tr>
+                    <td>{{item.placa}}</td>
+                    <td>{{item.modelo}}</td>
+                    {% if item.morador and item.visitante %}
+                        <td>{{item.morador}} e {{item.visitante}}</td>
+                    {% elif item.morador == None %}
+                        <td>{{item.visitante}}</td>
+                    {% else %}
+                        <td>{{item.morador}}</td>
+                    {% endif %}
+                    <td><a href="{% url 'cadastro_editar' tabela item.id %}"><i class="fas fa-edit"></i></a></td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            {% else %}
+                <thead>
+                    <tr>
+                        <th data-sortable="false">CPF</th>
+                        <th data-sortable="true">Nome</th>
+                        <th data-sortable="true">Telefone</th>
+                        <th data-sortable="true">Celular</th>
+                        <th class="text-center">Edição</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for item in lista %}
+                    <tr class="clickable" onclick="/ajuda/">
+                        <td>{{item.cpf}}</td>
+                        <td>{{item.nome}}</td>
+                        <td>
+                            {% if item.telefone == None %}
+                                <span> Não tem </span>
+                            {% else %}
+                                {{item.telefone}}
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if item.celular == None %}
+                                <span> Não tem </span>
+                            {% else %}
+                                {{item.celular}}
+                            {% endif %}
+                        </td>
+                        <td><a href="{% url 'cadastro_editar' tabela item.id %}"><i class="fas fa-edit"></i></a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            {% endif %}
+        </table>
+    </div>
+</div>
+
+<div class="row" style="padding-top:5px">
+    <div class="col text-center">
+        <a  class="btn btn-primary" role="button" href="{% url 'cadastro' %}" > Voltar </a>
+    </div>
+</div>
+{% endblock %}

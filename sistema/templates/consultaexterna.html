@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %} Relatório de Visitantes {% endblock %}
+
+{% block main %}
+    <table id="table"
+        data-toggle="table"
+        data-search="true"
+        data-pagination="true"
+        data-show-columns="true"
+        data-page-list="[5, 10, 15, 50, all]"
+        data-height="510"
+        > <!-- toggle: ativa a table c/ js. Data-heigth permite bloquear o tamanho da tabela e permite rolagem dela -->
+        <thead>
+            <tr>
+                <th data-sortable="true">Cartão</th>
+                <th data-sortable="true">Entrada</th>
+                <th data-sortable="true">Saída</th>
+                <th data-sortable="true">Visitante</th>
+                <th data-sortable="true">Placa</th>
+                <th data-sortable="true">Modelo</th>
+                <th data-sortable="true">Cartão</th>
+            </tr>
+        </thead>
+        <tbody>
+        <!-- https://docs.djangoproject.com/en/2.2/ref/templates/builtins/#std:templatefilter-date -->
+        {% for item in lista %}
+            <tr>
+                <td>{{item.cartao}}</td>
+                <td><span style="color:green;"><i class="fas fa-arrow-alt-circle-up"></i></span> {{item.entrada|date:"d/m/y H:i"}}</td>
+                <td>
+                    {% if item.saida == None %}
+                        Não
+                    {% else %}
+                        <span style="color:red;"><i class="fas fa-arrow-alt-circle-down"></i></span> {{item.saida|date:"d/m/y H:i"}}
+                    {% endif %}
+                </td>
+                <td>{{item.visitante}}</td>
+                <td>
+                    {% if item.veiculo == None %}
+                        Sem veículo
+                    {% else %}
+                        {{item.veiculo.placa}}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.veiculo == None %}
+                        -------
+                    {% else %}
+                        {{item.veiculo.modelo}}
+                    {% endif %}
+                </td>
+                <td>
+                    {% if item.livre == 'nao' %}
+                        Ocupado
+                    {% else %}
+                        Livre
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="row" style="padding-top:5px">
+        <div class="col text-center">
+            <a  class="btn btn-primary" role="button" href="{% url 'consulta' %}" > Voltar </a>
+        </div>
+    </div>
+{% endblock %}

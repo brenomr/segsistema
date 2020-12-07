@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %} Página Inicial {% endblock %}
+
+{% block main %}
+    <div class="jumbotron">
+        <div class="row justify-content-md-center" style="padding-bottom:20px">
+
+            <!-- div de video -->
+            <div class="col-md-6 text-center">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video controls="true" class="embed-responsive-item">
+                        <source src="static/segsis.webm" type="video/webm" />
+                    </video>
+                </div>
+            </div>
+
+            <!-- div de separação -->
+            <div class="col-md-1" style="padding:10px"></div>
+
+            <!-- div de boas vindas -->
+            <div class="col-md-4 text-center shadow bg-light rounded my-auto" style="background-color:white; padding: 20px">
+                <h2>Boas Vindas</h2>
+
+                {% if user.is_authenticated %}
+                        Olá {{user.username}}, utilize o menu "Portaria" para iniciar o controle de acesso.
+                {% else %}
+                    Conecte-se para acessar opções restritas de acesso.
+                {% endif %}
+
+                <hr>
+                Mais informações podem ser acessadas no menu "Ajuda". <br>Duvidas entre em <a href="{% url 'sobre' %}">contato</a>.
+            </div>
+        </div>
+    </div>
+{% endblock %}

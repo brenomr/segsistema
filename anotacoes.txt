@@ -1,0 +1,294 @@
+        teste = {"i1":"item1","i2":"item2","i3":"item3"}
+        del teste["i1"] #remover uma key do dicionario // no caso do form
+        form = teste
+
+#######################################################################
+TABELA FUNCIONAL
+#######################################################################
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.0/bootstrap-table.min.css"> <!-- Mantem responsividade -->
+<table id="table"
+        data-toggle="table"
+        data-search="false"
+        data-filter-control="true"
+        data-show-columns="true"
+        >
+        <thead>
+            <tr>
+                <th data-field="n1" data-filter-control="input" data-sortable="true">CPF</th>
+                <th data-field="n2" data-filter-control="input" data-sortable="true">Morador</th>
+                <th data-field="n3" data-filter-control="select" data-sortable="true">Acesso</th>
+                <th data-field="n4" data-filter-control="select" data-sortable="true">Data</th>
+                <th data-field="n5" data-filter-control="select" data-sortable="true">Horário</th>
+                <th data-field="n6" data-filter-control="select" data-sortable="true">Veículo</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for item in lista %}
+                <tr>
+                    <td>{{item.morador.cpf}}</td>  <!-- <a href="{% url 'cadastro_editar' 'morador' item.morador.id %}"><i class="fas fa-user-edit"></i></td> -->
+                    <td>{{item.morador.nome}}</td> <!-- mais informações de datas https://docs.djangoproject.com/en/2.2/ref/templates/builtins/ -->
+                    <td>{{item.tipo}}</td>
+                    <td>{{item.data|date:" d/m/y"}}</td>
+                    <td>{{item.data|date:" h:i A"}}</td>
+                    <td>
+                        {% if item.veiculo == None %}
+                            Sem veículo
+                        {% else %}
+                            {{item.veiculo.placa}}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<script src="/static/jquery.min.js"></script> <!-- Mantem visual -->
+<script src="/static/bootstrap-table.js"></script> <!-- Mantem visual -->
+<script src="/static/bootstrap-table-filter-control.js"></script> <!-- filtro -->
+
+#######################################################################
+VIDEO
+#######################################################################
+
+
+<video controls>
+                        <source src="/static/segsis.mp4" type="video/mp4">
+                    </video>
+
+#######################################################################
+CONFIGURAÇÃO PORTARIA.HTML
+#######################################################################
+
+{% extends 'base.html' %}
+
+{% block title %} Portaria {% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row" style="padding-bottom:30px;">
+            <!-- <div class="col" style="background-color: ?"> para trocar back color -->
+            <div class="col-12" style="background-color:#343a40;">
+                <h3 style="color:white; text-align:center;">Acesso Morador</h3>
+            </div>
+
+            <div class="col-12" style="padding-top:10px;">
+                <form method="post" action="{% url 'registrar' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-block" name="item" value="1"><i class="fas fa-walking fa-6x"></i><br><b>Acesso</b></button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" style="background-color:#343a40;">
+                <h3  style="color:white; text-align:center;">Acesso Visitante</h3> <!-- Entrada Visitante -->
+            </div>
+
+            <div class="col-12" style="padding-top:10px;">
+                <form method="post" action="{% url 'registrar' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-block" name="item" value="2"><i class="fas fa-walking fa-6x"></i><br><b>Entrada</b></button>
+                </form>
+                <br><hr>
+            </div>
+
+            <div class="col-12" style="padding-top:30px;">
+                <form method="post" action="{% url 'saida' %}" id="sair"> <!-- Saida visitante -->
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label>Identificação para saída</label>
+                        <input name="item" type="text" placeholder="Número do Cartão" value="" class="form-control"> <br><!-- cartão procurado -->
+                        <button type="submit" class="btn btn-danger btn-block" name="item2" value="2"><i class="fas fa-door-open fa-4x"></i><br><b>Saída</b></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
+#######################################################################
+CSS ORIGINAL
+#######################################################################
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px; /* Margin bottom by footer height */
+}
+
+.footer {
+  position: absolute;
+  display: block;
+  bottom: 0;
+  width: 100%;
+  height: 40px; /* Set the fixed height of the footer here */
+  line-height: 40px; /* Vertically center the text there */
+  background-color: #f5f5f5;
+}
+#######################################################################
+
+MULTIPLAS TABELAS BUSCA https://www.youtube.com/watch?v=1wi0AHxjcn8
+
+#PARA LINKS DE MUDANCA DE COR
+        <a href="{% url 'mudar' 'primary' %}" class="btn btn-primary">Azul</a>
+        <a href="{% url 'mudar' 'dark' %}" class="btn btn-secondary">Preto</a>
+
+        path('mudar/<str:menu>', mudar, name='mudar'),
+
+
+        <form method="post" action="/action_page.php" target="_blank">
+  <select name="OPCAO">
+    <option value="UM">First</option>
+    <option value="DOIS">Second</option>
+    <option value="TRES">Third</option>
+  </select>
+  <input type="submit" value="Submit the form"/>
+</form>
+
+            <div class="col-sm-4" >
+                <div class="embed-responsive embed-responsive-16by9">
+                    <video controls>
+                        <source src="/static/segsis.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+
+#######################################################################
+    nam = forms.CharField(widget=forms.TextInput(attrs={'class': 'sp_celphones','autocomplete':'off'}))
+    ccpf = forms.CharField(widget=forms.TextInput(attrs={'class': 'cpf'}))
+#######################################################################
+
+#######################################################################
+FORMULÁRIO DE CADASTRO/REGISTRO MORADOR/VISITANTE/VEICULO
+
+<form method="POST" enctype="multipart/form-data">
+        <section class="examples">
+            <div class="inputs">
+                {% csrf_token %}
+                <div class="row">
+                {% for field in form %}
+                    <label for="{{ field.id_for_label }}" class="label">{{field.html_name}}</label>
+                    <div class="input-group">
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                </div>
+                <br><button type="submit" class="btn btn-primary">Salvar</button>
+                <a  class="btn btn-primary" role="button" href="{% url 'cadastro' %}" >Cancelar</a>
+            </div>
+        </section>
+    </form>
+
+
+#######################################################################
+
+
+@login_required
+def registrar(request): # REGISTRAR ACESSO
+    form = Filtro(request.POST)
+
+    if form.is_valid():
+        verificar = form.cleaned_data['item']
+
+        if verificar == '1':
+            form = AcessoMorador(request.POST or None)
+            resultado = 'Morador Registrado'
+
+        else:
+            form = AcessoVisitante(request.POST or None)
+            resultado = 'Visitante Registrado'
+
+        try: # TRY para tratar o erro de exception retornado caso o usuário tente registrar o mesmo cartão + de uma vez, chamando o exception do UNIQUE_TOGETHER
+            if form.is_valid():
+                form.save()
+                classe = 'fas fa-check fa-8x' # Definições para template
+                cor = '#00b33c'
+                return render(request, 'confirmacao.html', {'data': relogio, 'resultado':resultado, 'classe':classe,'cor':cor,'titulo':'Registro'})
+
+            else:
+                return render(request, 'entrada.html', {'data': relogio, 'form': form, 'titulo': 'Entrada'})
+
+        except Error as e:
+            resultado = 'O cartão já está em uso, tente novamente!'
+            classe = 'fas fa-times fa-8x'
+            cor = 'Tomato'
+            return render(request, 'confirmacao.html', {'data':relogio, 'resultado':resultado,'classe':classe,'cor':cor,'titulo':'Registro'})
+
+    else:
+        return render(request, 'confirmacao.html',{'data': relogio, 'resultado': 'Erro no POST', 'classe': 'fas fa-times fa-8x', 'cor': 'Tomato', 'titulo': 'Erro no Registro'})
+
+created_date = models.DateTimeField(default=now, editable=False)
+
+#######################################################################
+    <h2>Login</h2>
+    <form method="post">
+        {% csrf_token %}
+          {{form.as_p}}
+          <button type="submit">Login</button>
+    </form>
+
+#######################################################################
+
+{% extends 'base.html' %}
+
+{% block title %} Relatório de Moradores {% endblock %}
+
+{% block main %}
+    <h2>{{titulo}}</h2><br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>CPF</th>
+                <th>Nome</th>
+                <th>Acesso</th>
+                <th>Data</th>
+                <th>Veículo</th>
+                <th>Placa</th>
+            </tr>
+        </thead>
+        {% for item in lista %}
+        <tbody>
+            <td>{{item.morador.cpf}}</td>
+            <td>{{item.morador.nome}}</td>
+            <td>{{item.tipo}}</td>
+            <td>{{item.data}}</td>
+            <td>{{item.veiculo.modelo}}</td>
+            <td>{{item.veiculo.placa}}</td>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+
+#######################################################################
+
+
+
+https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_method_post
+https://stackoverflow.com/questions/17139501/using-post-to-get-select-option-value-from-html/17139538
+
+SOLUCAO PRA MULTIPLAS TABELAS
+https://docs.djangoproject.com/en/2.2/ref/contrib/contenttypes/
+https://stackoverflow.com/questions/33528098/django-model-one-foreign-key-to-many-tables
+https://medium.com/@leportella/como-usamos-rela%C3%A7%C3%B5es-gen%C3%A9ricas-do-django-para-adicionar-coment%C3%A1rios-em-inst%C3%A2ncias-de-diferentes-59a80aa6a7b
+
+SCRIPTS
+BASE.HTML
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    DEIXEI DE FORA, SE ALGO DER PROBLEMA, PUXAR NA PASTA DO STATIC
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+CSS
+    REMOVI DO LOGIN
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    ATUALIZADO CSS DO BOOTSTRAP DO 4.1.1, PARA O 4.3.1, NÃO DEU PROBLEMA ATÉ AGORA, SE DER VOLTAR PARA O 4.1.1

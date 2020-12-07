@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %} Página Inicial {% endblock %}
+
+{% block main %}
+    <div class="jumbotron">
+        <div class="row text-center">
+            <div class="col-md-4" style="padding:15px 40px 15px 40px">
+                <a class="btn btn-light" href="{% url 'perguntas' %}" role="button">
+                    <p style="color:#007bff;"><i class="far fa-question-circle fa-4x"></i></p>
+                    <h3>Perguntas</h3>
+                    <p>Área com perguntas frequentes relacionadas a aplicação</p>
+                </a>
+            </div>
+
+            <div class="col-md-4" style="padding:15px 40px 15px 40px">
+                <a class="btn btn-light" href="{% url 'manual' %}" role="button">
+                    <p style="color:#007bff;"><i class="fas fa-cogs fa-4x"></i></p>
+                    <h3>Manual</h3>
+                    <p>Área com tópicos relacionados ao uso da aplicação.</p>
+                </a>
+            </div>
+
+            <div class="col-md-4" style="padding:15px 40px 15px 40px">
+                <a class="btn btn-light" href="{% url 'sobre' %}" role="button">
+                    <p style="color:#007bff;"><i class="fas fa-align-justify fa-4x"></i></p>
+                    <h3>Sobre</h3>
+                    <p>Área com informações sobre a desenvolvedora e informações de contato.</p>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+
+{% block title %} Ajuda - Tópicos {% endblock %}
+
+{% block main %}
+<body style="overflow-y:scroll;">
+    <div class="jumbotron">
+      <div id="accordion">
+
+        <!-- PERGUNTA 1 -->
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Existem outras maneiras de conectar ao sistema além do botão 'conectar'?
+              </button>
+            </h5>
+          </div>
+
+          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+               Será disponibilizado um usuário e senha para cada funcionário que irá utilizar o sistema. Após o recebimento dessas informações o usuário deverá clicar no botão "conectar" localizado no canto superior direito da página e informar os dados solicitados.
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 2 -->
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                O que fazer se eu esquecer a senha?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+              Caso esqueça a senha, basta utilizar o campo 'Esqueci a senha' na <a href="/login/">tela de login</a>, informar o e-mail que foi utilizado na criação da conta, após basta acessar o e-mail e seguir os passos para restauração da senha.
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 3 -->
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Como cadastrar novos moradores ou visitantes?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+              Para realizar o cadastro é necessário estar logado ao sistema. Acesse o menu 'Cadastro' e nele você pode selecionar a categoria desejada, após basta preecher o formulário.
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 4 -->
+        <div class="card">
+          <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                Porque o registro de acesso de moradores não pede número de cartão?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+            <div class="card-body">
+              Pois seguindo as regras informadas, os moradores tem acesso com regras mais brandas, uma vez que muitos moradores podem realizar um acesso simultaneamente, através de apenas uma identificação de morador. Ex. um pai de família registra o acesso e a família toda (filhos e esposa) acessam o condomínio.
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 5 -->
+        <div class="card">
+          <div class="card-header" id="headingFive">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                Não consigo acessar o cadastro na busca simples?
+              </button>
+            </h5>
+          </div>
+          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
+            <div class="card-body">
+              Não, o propósito da 'Busca Simples' na barra de menu é apenas retornar se o cadastro procurado existe, para acessar a informação é necessário utilizar a listagem dos cadastos ou consultas.
+            </div>
+          </div>
+        </div>
+
+        <!-- PERGUNTA 6 -->
+        <div class="card">
+          <div class="card-header" id="heading6">
+            <h5 class="mb-0">
+              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
+                Como realizo as consultas? Elas diferem da busca simples?
+              </button>
+            </h5>
+          </div>
+          <div id="collapse6" class="collapse" aria-labelledby="heading6" data-parent="#accordion">
+            <div class="card-body">
+              Para realizar uma consulta basta acessar o menu 'Consultas', em seguida informe o tipo de consulta, sendo cadastro ou acessos. A diferença entre consulta e busca simples é que a consulta retorna informações mais detalhadas e com possibilidade de acessar o o cadastro, na busca simples retorna apenas informações de simples vizualização.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+{% endblock %}

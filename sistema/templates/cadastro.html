@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %} Cadastro {% endblock %}
+
+{% block main %}
+    <!-- página geral de Cadastro, com botões para listar -->
+    <div class="jumbotron">
+        <div class="row justify-content-md-center">
+            <div class="col-sm-12 text-center" ><h1>Listar</h1><br></div>
+        </div>
+
+        <!-- DAQUI PARA BAIXO -->
+        <form method="post" action="{% url 'cadastro_listar' %}">
+            {% csrf_token %}
+            <div class="row justify-content-md-center">
+                <div class="col-sm-3 text-center" style="padding: 10px 15px 10px 15px">
+                    <button type="submit" class="btn btn-primary btn-block" name="item" value="morador">
+                        <i class="fas fa-user-alt fa-5x"></i><br>
+                        <span style="font-size: 100%">Moradores</span>
+                    </button>
+                </div>
+                <div class="col-sm-3 text-center"  style="padding: 10px 15px 10px 15px">
+                    <button type="submit" class="btn btn-primary btn-block" name="item" value="visitante">
+                        <i class="fas fa-user-friends fa-5x"></i><br>
+                        <span style="font-size: 100%">Visitantes</span>
+                    </button>
+                </div>
+                <div class="col-sm-3 text-center" style="padding: 10px 15px 10px 15px">
+                    <button type="submit" class="btn btn-primary btn-block" name="item" value="veiculo">
+                        <i class="fas fa-car-side fa-5x"></i><br>
+                        <span style="font-size: 100%">Veículos</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

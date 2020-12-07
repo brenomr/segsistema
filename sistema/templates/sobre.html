@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+
+{% block title %} Ajuda - Sobre {% endblock %}
+
+{% block main %}
+        <div class="row rounded" style="padding:40px;background-color:#e9ecef;">
+            <div class="col-md-12 text-justify" style="padding:15px 0px 20px 0px">
+                <h4>Sobre a empresa e a aplicação web</h4><br>
+                <p> A empresa Seg Sistemas é especializada em desenvolver sistemas para controle de acesso e monitoramento de condominios residenciais e portarias empresarias.</p>
+                <p> Este sistema web possui varias vantagens, entre elas o acesso que pode ser gerenciado apartir de qualquer plataforma que tenha acesso a internet e atenda requisitos prévios, como navegador atualizado.</p>
+                <p> Para oferecer proteção, o sistema conta com registros de entrada, saida e também gera consultas detalhadas destes acessos para acompanhar os registros.</p>
+            </div>
+        </div><br>
+
+    <div class="row bg-primary rounded">
+        <div class="col-md-3">
+            <h3 style="color:white;padding:30px 0px 0px 20px;"><i class="fas fa-envelope fa-3x"></i><br><br>Contato</h3>
+            <p style="color:white;padding:20px 20px 30px 20px;">Entre em contato através do whatsapp, telefone ou uma de nossas mídias digitais.</p>
+        </div>
+
+        <div class="col-md-9 bg-light" style="padding:30px">
+            <div class="row text-center">
+                <div class="col-md-3" style="padding-bottom:30px;">
+                    <a href="https://goo.gl/maps/vTeNG8GdduBhmqNp9">
+                    <i class="fas fa-map-marker-alt fa-3x" style="padding: 0.5em 0.6em;box-shadow: 0px 0px 5px #888;border-radius: 60px;"></i>
+                    <p style="padding-top:20px;">Avenida Presidente Vargas, 455, Centro - Indaiatuba/SP</p> </a>
+                </div>
+                <div class="col-md-3" style="padding-bottom:30px;">
+                    <i class="fas fa-phone-alt fa-3x" style="padding: 0.5em 0.5em;box-shadow: 0px 0px 5px #888;border-radius: 60px;"></i>
+                    <p style="padding-top:20px;"> (19) 0001-0001 <br>(19) 0002-0002</p>
+                </div>
+                <div class="col-md-3" style="padding-bottom:30px;">
+                    <img src="/static/whatsapp.png" alt="#" height="95">
+                    <p style="padding-top:20px;"> (19) 90000-0000 <br>(19) 91111-1111</p>
+                </div>
+                <div class="col-md-3">
+                    <a href="https:facebook.com">
+                    <i class="fab fa-facebook-f fa-3x" style="padding: 0.5em 0.7em;box-shadow: 0px 0px 5px #888;border-radius: 60px;"></i>
+                    <p style="padding-top:20px;">Acesse nosso facebook</p> </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

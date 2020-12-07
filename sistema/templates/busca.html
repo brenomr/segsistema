@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %} Resultado da Busca {% endblock %}
+
+{% block main %}
+    <table id="table"
+        data-toggle="table"
+        data-pagination="true"
+        data-show-columns="true"
+        data-page-list="[5, 10, 15, 50, all]"
+        data-height="510"
+        data-show-search-button="true"
+        >
+
+        <thead>
+            <tr>
+                <th data-sortable="false">CPF</th>
+                <th data-sortable="false">Nome</th>
+                <th data-sortable="false">Modelo</th>
+                <th data-sortable="false">Placa</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in encontrados %}
+            <tr>
+
+                <td>{{item.cpf}}</td>
+                <td>{{item.nome}}</td>
+                <td>{{item.modelo}}</td>
+                <td>{{item.placa}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
